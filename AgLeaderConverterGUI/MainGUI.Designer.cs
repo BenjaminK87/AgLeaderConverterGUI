@@ -1,6 +1,6 @@
 ﻿namespace AgLeaderConverterGUI
 {
-    partial class Form1
+    partial class MainGUI
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainGUI));
             this.btnStartConverter = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.btnChooseInput = new System.Windows.Forms.Button();
@@ -36,6 +36,7 @@
             this.lblInputDirectory = new System.Windows.Forms.Label();
             this.lblOutputDirectory = new System.Windows.Forms.Label();
             this.pbFiles = new System.Windows.Forms.ProgressBar();
+            this.btnHelp = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnStartConverter
@@ -94,11 +95,22 @@
             this.pbFiles.Size = new System.Drawing.Size(303, 23);
             this.pbFiles.TabIndex = 8;
             // 
-            // Form1
+            // btnHelp
+            // 
+            this.btnHelp.Location = new System.Drawing.Point(228, 71);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(75, 23);
+            this.btnHelp.TabIndex = 9;
+            this.btnHelp.Text = "Help";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
+            // MainGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(303, 123);
+            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.pbFiles);
             this.Controls.Add(this.lblOutputDirectory);
             this.Controls.Add(this.lblInputDirectory);
@@ -106,7 +118,7 @@
             this.Controls.Add(this.btnChooseInput);
             this.Controls.Add(this.btnStartConverter);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "MainGUI";
             this.Text = "AgLeader - AgOpenGPS Converter";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -122,6 +134,7 @@
         private System.Windows.Forms.Label lblInputDirectory;
         private System.Windows.Forms.Label lblOutputDirectory;
         private System.Windows.Forms.ProgressBar pbFiles;
+        private System.Windows.Forms.Button btnHelp;
     }
 }
 

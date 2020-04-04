@@ -15,9 +15,9 @@ using CsvHelper.Configuration.Attributes;
 
 namespace AgLeaderConverterGUI
 {
-    public partial class Form1 : Form
+    public partial class MainGUI : Form
     {
-        public Form1()
+        public MainGUI()
         {
             InitializeComponent();
         }
@@ -381,6 +381,11 @@ namespace AgLeaderConverterGUI
             }
         }
 
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            AboutBox1 ab = new AboutBox1();
+            ab.Show();
+        }
 
         private double[] MapLatLonToXY(double phi, double lambda, double lambda0)
         {
@@ -436,8 +441,6 @@ namespace AgLeaderConverterGUI
             return radians * 57.295779513082325225835265587528;
         }
     }
-
-
 }
 
 public class ABLineData
@@ -476,7 +479,6 @@ public static class variables
     public static double point1Easting, point1Northing;
     public static int utmEastOffset, utmNorthOffset;
     public static double twoPI = 6.28318530717958647692;
-    //public static string directoryRoot = "C:\\Users\\Benjamin\\Documents\\Ag Leader Technology\\SMS\\Export\\";
     public static string inputDirectory;
     public static string outputDirectory;
     public static string directoryName;
