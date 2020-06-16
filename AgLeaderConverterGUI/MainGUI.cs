@@ -88,8 +88,6 @@ namespace AgLeaderConverterGUI
                                 pointBLon = double.Parse(pointB.Substring(0, zweitesKomma));
                                 pointBLat = double.Parse(pointB.Substring(zweitesKomma + 1, pointB.Length - zweitesKomma - 1));
 
-                                centralMeridian = -177 + ((zone - 1) * 6);
-                                convergenceAngle = Math.Atan(Math.Sin(toRadians(pointALat)) * Math.Tan(toRadians(pointALon - centralMeridian)));
 
                                 if (variables.debug) Console.WriteLine("Point A:");
                                 if (variables.debug) Console.WriteLine(pointA);
@@ -102,20 +100,27 @@ namespace AgLeaderConverterGUI
                                     UpdateNorthingEasting(pointALat, pointALon, false);
                                 }
 
-                                refPoint1Easting = variables.fullEasting;
-                                refPoint1Northing = variables.fullNorthing;
+                                centralMeridian = -177 + ((zone - 1) * 6);
+                                convergenceAngle = Math.Atan(Math.Sin(toRadians(pointALat)) * Math.Tan(toRadians(pointALon - centralMeridian)));
+
+                                refPoint1Easting = variables.eastingNachKomma;
+                                refPoint1Northing = variables.northingNachKomma;
                                 variables.point1Easting = variables.eastingNachKomma;
                                 variables.point1Northing = variables.northingNachKomma;
 
                                 if (variables.debug) Console.WriteLine("Point B:");
                                 if (variables.debug) Console.WriteLine(pointB);
                                 UpdateNorthingEasting(pointBLat, pointBLon, false);
-                                refPoint2Easting = variables.fullEasting;
-                                refPoint2Northing = variables.fullNorthing;
+                                refPoint2Easting = variables.eastingNachKomma;
+                                refPoint2Northing = variables.northingNachKomma;
 
-                                var geo1 = new GeoCoordinate(pointALat, pointALon);
-                                var geo2 = new GeoCoordinate(pointBLat, pointBLon);
-                                double abHeading = GeoCoordinate.CourseAngle(geo1, geo2);
+                                //var geo1 = new GeoCoordinate(pointALat, pointALon);
+                                //var geo2 = new GeoCoordinate(pointBLat, pointBLon);
+                                //double abHeading = GeoCoordinate.CourseAngle(geo1, geo2);
+                                double abHeading = Math.Atan2(refPoint2Easting - refPoint1Easting, refPoint2Northing - refPoint1Northing);
+                                if (abHeading < 0) abHeading += variables.twoPI;
+                                abHeading = toDegrees(abHeading);
+
                                 if (variables.debug) Console.WriteLine(abHeading);
 
                                 if (variables.debug) Console.WriteLine("");
@@ -479,8 +484,8 @@ public static class variables
     public static double point1Easting, point1Northing;
     public static int utmEastOffset, utmNorthOffset;
     public static double twoPI = 6.28318530717958647692;
-    public static string inputDirectory;
-    public static string outputDirectory;
+    public static string inputDirectory = "C:\\Users\\Benjamin\\Desktop\\csv";
+    public static string outputDirectory = "C:\\Users\\Benjamin\\Desktop\\AgFields";
     public static string directoryName;
 }
 
